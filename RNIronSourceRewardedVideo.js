@@ -66,6 +66,8 @@ module.exports = {
   showRewardedVideo: (placementName) => RNIronSourceRewardedVideo.showRewardedVideo(placementName),
   isRewardedVideoAvailable: () => RNIronSourceRewardedVideo.isRewardedVideoAvailable(),
   setDynamicUserId: (userId) => RNIronSourceRewardedVideo.setDynamicUserId(userId),
+  setCustomParams: (field, paramValue) => RNIronSourceRewardedVideo.setCustomParams(field, paramValue),
+  clearCustomParams: () => RNIronSourceRewardedVideo.clearCustomParams(),
   addEventListener,
   removeEventListener,
   removeAllListeners
