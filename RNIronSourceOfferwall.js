@@ -52,6 +52,7 @@ module.exports = {
   ...RNIronSourceOfferwall,
   initializeOfferwall: () => {}, // Deprecated. Here for backwards compatibility with 2.8.0
   showOfferwall: () => RNIronSourceOfferwall.showOfferwall(),
+  setOWCustomParams: (field, paramValue) => RNIronSourceOfferwall.setOWCustomParams(field, paramValue),
   addEventListener,
   removeEventListener,
   removeAllListeners

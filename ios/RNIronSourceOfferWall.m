@@ -51,7 +51,7 @@ RCT_EXPORT_METHOD(showOfferwall)
     if ([IronSource hasOfferwall]) {
         NSLog(@"showOfferwall - offerwall available");
         [self sendEventWithName:kIronSourceOfferwallAvailable body:nil];
-        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [IronSource showOfferwallWithViewController:RCTPresentedViewController()];
         });
@@ -61,6 +61,12 @@ RCT_EXPORT_METHOD(showOfferwall)
     }
 }
 
+RCT_EXPORT_METHOD(setOWCustomParams:(NSString *)field paramValue:(NSString *)paramValue)
+{
+    NSMutableDictionary * owDic = [[NSMutableDictionary alloc] init];
+    owDic[field] = paramValue;
+    [ISConfigurations configurations].offerwallCustomParameters = owDic;
+}
 
 #pragma mark delegate events
 
