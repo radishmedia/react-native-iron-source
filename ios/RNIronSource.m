@@ -44,5 +44,10 @@ RCT_EXPORT_METHOD(getAdvertiserId:(RCTPromiseResolveBlock)resolve reject:(RCTPro
     }
 }
 
+RCT_EXPORT_METHOD(setMetaData:(NSString *)key keyValue:(NSString *)keyValue)
+{
+    [IronSource setMetaDataWithKey:key value:keyValue];
+}
+
 @end
 
