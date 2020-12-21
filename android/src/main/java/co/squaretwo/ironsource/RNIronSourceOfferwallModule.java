@@ -3,6 +3,8 @@ package co.squaretwo.ironsource;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import java.util.HashMap;
+import java.util.Map;
 import androidx.annotation.Nullable;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.WritableMap;
@@ -103,6 +105,8 @@ public class RNIronSourceOfferwallModule extends ReactContextBaseJavaModule {
                          */
                         @Override
                         public void onOfferwallClosed() {
+                            Log.d(TAG, "onOfferwallClosed() called!");
+                            sendEvent("ironSourceOfferwallClosedByUser", null);
                         }
                     });
                 }
@@ -129,6 +133,14 @@ public class RNIronSourceOfferwallModule extends ReactContextBaseJavaModule {
             }
         });
     }
+
+    @ReactMethod
+    public void setOWCustomParams(String field, String paramValue) {
+        Map<String, String> owParams = new HashMap<String, String>();
+        owParams.put(field, paramValue);
+        SupersonicConfig.getConfigObj().setOfferwallCustomParams(owParams);
+    }
+
 
     private void sendEvent(String eventName, @Nullable WritableMap params) {
         getReactApplicationContext().getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, params);
