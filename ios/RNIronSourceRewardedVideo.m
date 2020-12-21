@@ -54,7 +54,7 @@ RCT_EXPORT_METHOD(showRewardedVideo:(NSString*)placementName)
     if ([IronSource hasRewardedVideo]) {
         NSLog(@"showRewardedVideo - video available");
         [self sendEventWithName:kIronSourceRewardedVideoAvailable body:nil];
-        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [IronSource showRewardedVideoWithViewController:RCTPresentedViewController() placement:placementName];
         });
@@ -78,6 +78,18 @@ RCT_EXPORT_METHOD(isRewardedVideoAvailable:(RCTPromiseResolveBlock)resolve rejec
 RCT_EXPORT_METHOD(setDynamicUserId:(NSString*)userId)
 {
     [IronSource setDynamicUserId:userId];
+}
+
+RCT_EXPORT_METHOD(setCustomParams:(NSString *)field paramValue:(NSString *)paramValue)
+{
+    NSMutableDictionary * paramDic = [[NSMutableDictionary alloc] init];
+    paramDic[field] = paramValue;
+    [IronSource setRewardedVideoServerParameters:paramDic];
+}
+
+RCT_EXPORT_METHOD(clearCustomParams)
+{
+    [IronSource clearRewardedVideoServerParameters];
 }
 
 #pragma mark delegate events

@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import androidx.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
@@ -143,6 +145,18 @@ public class RNIronSourceRewardedVideoModule extends ReactContextBaseJavaModule 
     @ReactMethod
     public void setDynamicUserId(String userId) {
         IronSource.setDynamicUserId(userId);
+    }
+
+    @ReactMethod
+    public void setCustomParams(String field, String paramValue) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put(field, paramValue);
+        IronSource.setRewardedVideoServerParameters(params);
+    }
+
+    @ReactMethod
+    public void clearCustomParams() {
+        IronSource.clearRewardedVideoServerParameters();
     }
 
     private void sendEvent(String eventName, @Nullable WritableMap params) {
