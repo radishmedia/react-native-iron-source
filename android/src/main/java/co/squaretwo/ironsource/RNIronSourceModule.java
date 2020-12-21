@@ -85,4 +85,9 @@ public class RNIronSourceModule extends ReactContextBaseJavaModule {
         promise.resolve(null);
       }
     }
+
+    @ReactMethod
+    public void setMetaData(final String key, final String value) {
+        IronSource.setMetaData(key, value);
+    }
 }
