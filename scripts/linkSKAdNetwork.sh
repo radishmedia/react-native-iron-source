@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if ! [ -x "$(command -v plutil)" ]; then
+  echo 'plutil is not installed.' >&2
+  exit 0
+fi
+
 if [ "$1" = ""  ]; then
   echo "1st argument SKAdNetwork name is required"
   exit 0;
